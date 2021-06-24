@@ -17,11 +17,11 @@ Users should be able to:
 
 ### Screenshot
 
-![screenshot](./Screenshot.png)
+![screenshot](./Screenshot_new.png)
 
 ### Links
 
-- Live Site URL: [vercel.com/jan-may/countries-api-app](https://vercel.com/jan-may/countries-api-app)
+- Live Site URL: [vercel.com/jan-may/countries-api-app](https://countries-api-app.vercel.app/)
 
 ### Built with
 
