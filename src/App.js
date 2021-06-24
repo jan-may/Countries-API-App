@@ -4,6 +4,7 @@ import { FcSearch } from "react-icons/fc";
 import { FaMoon } from "react-icons/fa";
 import Details from "./Details";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Loading from "./Loading";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -12,12 +13,15 @@ function App() {
   const selectRef = React.useRef("");
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [detailQuery, setDetailQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleGetCountries = async () => {
+    setIsLoading(true);
     try {
       const res = await axios.get("https://restcountries.eu/rest/v2/all");
       setCountries(res.data);
       setInitial(res.data);
+      setIsLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -152,36 +156,44 @@ function App() {
                 </select>
               </form>
             </div>
-            <main className={countries.length <= 3 && "less-countries"}>
-              {countries.map((country) => {
-                return (
-                  <Link to={`/${country.alpha3Code}`} className="no-deko">
-                    <article
-                      onClick={() => setDetailQuery(country)}
-                      className={isDarkMode && "dark-lighter"}
-                    >
-                      <div className="img-wrapper">
-                        <img src={country.flag} alt={country.name + " flag"} />
-                      </div>
-                      <div className="country-data">
-                        <h3>{country.name}</h3>
-                        <p>
-                          Population:{" "}
-                          <span>{formatNumber(country.population)}</span>
-                        </p>
-                        <p>
-                          Region: <span>{country.region}</span>
-                        </p>
-                        <p>
-                          Capital: <span>{country.capital}</span>
-                        </p>
-                      </div>
-                    </article>
-                  </Link>
-                );
-              })}
-            </main>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <main className={countries.length <= 3 && "less-countries"}>
+                {countries.map((country) => {
+                  return (
+                    <Link to={`/${country.alpha3Code}`} className="no-deko">
+                      <article
+                        onClick={() => setDetailQuery(country)}
+                        className={isDarkMode && "dark-lighter"}
+                      >
+                        <div className="img-wrapper">
+                          <img
+                            src={country.flag}
+                            alt={country.name + " flag"}
+                          />
+                        </div>
+                        <div className="country-data">
+                          <h3>{country.name}</h3>
+                          <p>
+                            Population:{" "}
+                            <span>{formatNumber(country.population)}</span>
+                          </p>
+                          <p>
+                            Region: <span>{country.region}</span>
+                          </p>
+                          <p>
+                            Capital: <span>{country.capital}</span>
+                          </p>
+                        </div>
+                      </article>
+                    </Link>
+                  );
+                })}
+              </main>
+            )}
           </Route>
+
           <Route path={`/${detailQuery.alpha3Code}`}>
             <Details
               newCountry={detailQuery}
