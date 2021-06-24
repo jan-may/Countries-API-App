@@ -351,6 +351,9 @@ img {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }
+  .details-infos-wrapper {
+    grid-gap: 0;
+  }
   .search-wrapper-details {
     height: auto;
     padding-left: 30px;
