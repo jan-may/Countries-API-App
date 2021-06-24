@@ -67,6 +67,7 @@ header {
   -webkit-box-shadow: 2px 3px 16px -2px rgba(0, 0, 0, 0.11);
   -moz-box-shadow: 2px 3px 16px -2px rgba(0, 0, 0, 0.11);
   margin-bottom: 10px;
+  background-color: white;
 }
 
 header button {
@@ -88,7 +89,7 @@ main {
 }
 
 .search-wrapper {
-  height: 150px;
+  height: 140px;
   display: flex;
   justify-content: space-between;
   align-items: center;
