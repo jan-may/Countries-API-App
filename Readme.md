@@ -31,10 +31,6 @@ Users should be able to:
 - CSS Grid
 - [React](https://reactjs.org/) - JS library
 
-### Continued development
-
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
 
 ## Author
 
